@@ -5,34 +5,39 @@ import { todoAtom } from './atom/todo.atom';
 
 interface TodoItemProps {
     todo: Todo;
-    completeTodo: (id: number) => void;
-    removeTodo: (id: number) => void;
 }
 
-function TodoItem({ todo, completeTodo, removeTodo }: TodoItemProps) {
+function TodoItem({ todo }: TodoItemProps) {
 
 
     const [isEditing, setIsEditing] = useState(false);
     const [editText, setEditText] = useState(todo.text);
     const [todos, setTodos] = todoAtom.useState();
-    
 
 
-    const handleCompleteClick = () => {
-        completeTodo(todo.id);
+
+    const handleCompleteClick = (id: number) => {
+        const updatedTodos = todos.map(todo =>
+            todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        );
+        setTodos(updatedTodos);
+        localStorage.setItem('todos', JSON.stringify(updatedTodos));
     };
 
-    const handleRemoveClick = () => {
-        removeTodo(todo.id);
+    const handleRemoveClick = (id: number) => {
+        const updatedTodos = todos.filter(todo => todo.id !== id);
+        setTodos(updatedTodos);
+        localStorage.setItem('todos', JSON.stringify(updatedTodos));
     };
 
 
-  const saveEdit = () => {
-    const updatedTodos = todos.map(t => (t.id === todo.id ? { ...t, text: editText } : t));
-    setIsEditing(false);
-    setTodos(updatedTodos);
-    localStorage.setItem('todos', JSON.stringify(updatedTodos));
-  };
+
+    const saveEdit = () => {
+        const updatedTodos = todos.map(t => (t.id === todo.id ? { ...t, text: editText } : t));
+        setIsEditing(false);
+        setTodos(updatedTodos);
+        localStorage.setItem('todos', JSON.stringify(updatedTodos));
+    };
 
     return (
         <li className={`flex justify-between items-center`}>
@@ -49,12 +54,12 @@ function TodoItem({ todo, completeTodo, removeTodo }: TodoItemProps) {
 
             <div>
                 {isEditing ? (
-                    <button onClick={saveEdit}>Save</button>
+                    <button onClick={saveEdit} className='text-red-600'>Save</button>
                 ) : (
-                    <button className={`mx-1 ${todo.completed ? 'line-through text-gray-500' : ''}`} onClick={() => setIsEditing(true)}>Edit</button>
+                    <button className={`mx-1 text-blue-500 ${todo.completed ? 'line-through text-gray-500' : ''}`} onClick={() => setIsEditing(true)}>Edit</button>
                 )}
-                <button onClick={handleCompleteClick} className={`mx-1 ${todo.completed ? 'line-through text-gray-500' : ''}`}>Complete</button>
-                <button onClick={handleRemoveClick} className="mx-1">Remove</button>
+                <button onClick={() => handleCompleteClick(todo.id)} className={`mx-1 text-green-500 ${todo.completed ? 'line-through text-gray-500' : ''}`}>Complete</button>
+                <button onClick={() => handleRemoveClick(todo.id)} className="mx-1 text-red-800">Remove</button>
             </div>
         </li>
     );
