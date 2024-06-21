@@ -1,22 +1,12 @@
-import { useEffect, useState } from 'react';
-import Todo from './Todo';
+// import { useEffect } from 'react';
 import TodoItem from './TodoItem';
 import AddTodoForm from './AddTodoForm';
-
+import { useTodoStore } from './store/todo_store';
 
 const TodoList = () => {
-    const [todos, setTodos] = useState<Todo[]>([]);
 
+    const todos = useTodoStore((state) => state.todos);
 
-useEffect(() => {
-    const savedTodos = localStorage.getItem('todos');
-    if (savedTodos) {
-        setTodos(JSON.parse(savedTodos));
-    }
-  }, [todos]);
-  
-
-  
     return (
         <>
             <AddTodoForm />

@@ -1,21 +1,33 @@
-// export type AddTodoFormProps = {
-//   // props go here
-
 import { useEffect, useState } from "react";
 import Todo from "./Todo";
+import { useTodoStore } from "./store/todo_store";
 
-// }; props: AddTodoFormProps
+
+// const getTodos = () => {
+//   const savedTodos = localStorage.getItem('todos');
+//   if (savedTodos) {
+//     const parsedTodos: Todo[] = JSON.parse(savedTodos);
+//     useTodoStore.setState({ todos: parsedTodos });
+//   }
+// };
+
 export default function AddTodoForm() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+
+  const { todos , addTodo , setTodos} = useTodoStore((state)=> ({
+    todos: state.todos,
+    addTodo: state.addTodo,
+    setTodos: state.setTodos,
+  }))
+
   const [inputValue, setInputValue] = useState<string>('');
 
-  const addTodo = (text: string) => {
+  const addTodoFun = (text: string) => {
     const newTodo: Todo = {
         id: Date.now(),
         text,
         completed: false,
     };
-    setTodos([...todos, newTodo]);
+    addTodo(newTodo);
     localStorage.setItem('todos', JSON.stringify([...todos, newTodo]));
 };
 
@@ -23,18 +35,22 @@ export default function AddTodoForm() {
 const handelSubmit = (e: React.FormEvent) => {
   e.preventDefault();
   if (inputValue.trim() !== '') {
-      addTodo(inputValue);
+      addTodoFun(inputValue);
       setInputValue('');
   }
 }
 
+// useEffect(() => {
+//   getTodos(); 
+// }, []);
 
 useEffect(() => {
   const savedTodos = localStorage.getItem('todos');
   if (savedTodos) {
-      setTodos(JSON.parse(savedTodos));
+    const parsedTodos: Todo[] = JSON.parse(savedTodos);
+    setTodos(parsedTodos);
   }
-}, []);
+}, [setTodos]);
 
 
   return (

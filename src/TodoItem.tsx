@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import Todo from './Todo';
+import { useTodoStore } from './store/todo_store';
 
 interface TodoItemProps {
     todo: Todo;
@@ -7,36 +7,30 @@ interface TodoItemProps {
 
 function TodoItem({ todo }: TodoItemProps) {
 
-    const [todos, setTodos] = useState<Todo[]>([]);
-
+    const { todos, setTodos, removeTodo } = useTodoStore((state) => ({
+        todos: state.todos,
+        setTodos: state.setTodos,
+        removeTodo: state.removeTodo,
+      }));
 
 
     const handleCompleteClick = (id: number) => {
-        const updatedTodos = todos.map(todo =>
-            todo.id === id ? { ...todo, completed: !todo.completed } : todo
-        );
-        setTodos(updatedTodos);
-        localStorage.setItem('todos', JSON.stringify(updatedTodos));
+        const updatedTodos = todos.map((t) =>
+            t.id === id ? { ...t, completed: !t.completed } : t
+          );
+          setTodos(updatedTodos);
+          localStorage.setItem('todos', JSON.stringify(updatedTodos));
     };
 
     const handleRemoveClick = (id: number) => {
-        const updatedTodos = todos.filter(todo => todo.id !== id);
-        setTodos(updatedTodos);
-        localStorage.setItem('todos', JSON.stringify(updatedTodos));
+      removeTodo(id);
+      const updatedTodos = todos.filter((t) => t.id !== id);
+      setTodos(updatedTodos);
+      localStorage.setItem('todos', JSON.stringify(updatedTodos));
     };
 
 
-
-useEffect(() => {
-    const savedTodos = localStorage.getItem('todos');
-    if (savedTodos) {
-        setTodos(JSON.parse(savedTodos));
-    }
-  }, [todos]);
   
-
-  
-
     return (
         <li className={`flex justify-between items-center`}>
             <span className={`${todo.completed ? 'line-through text-gray-500' : ''}`}>{todo.text}</span>
