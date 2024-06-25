@@ -1,5 +1,5 @@
 import Todo from './Todo';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { todoAtom } from './atom/todo.atom';
 
 
@@ -11,41 +11,34 @@ function TodoItem({ todo }: TodoItemProps) {
 
 
     const [isEditing, setIsEditing] = useState(false);
-    const [editText, setEditText] = useState(todo.text);
-    const [todos, setTodos] = todoAtom.useState();
+    const editInputRef = useRef<HTMLInputElement | null>(null) 
 
 
 
     const handleCompleteClick = (id: number) => {
-        const updatedTodos = todos.map(todo =>
-            todo.id === id ? { ...todo, completed: !todo.completed } : todo
-        );
-        setTodos(updatedTodos);
-        localStorage.setItem('todos', JSON.stringify(updatedTodos));
+        todoAtom.complete(id);
     };
 
     const handleRemoveClick = (id: number) => {
-        const updatedTodos = todos.filter(todo => todo.id !== id);
-        setTodos(updatedTodos);
-        localStorage.setItem('todos', JSON.stringify(updatedTodos));
+        todoAtom.remove(id);
     };
 
-
-
-    const saveEdit = () => {
-        const updatedTodos = todos.map(t => (t.id === todo.id ? { ...t, text: editText } : t));
+    const handleSaveClick = () => {
+        const newText = editInputRef.current?.value.trim();
+        if (!newText) return;
+        todoAtom.updateText(todo.id, newText);
         setIsEditing(false);
-        setTodos(updatedTodos);
-        localStorage.setItem('todos', JSON.stringify(updatedTodos));
-    };
+      };
+
+
 
     return (
         <li className={`flex justify-between items-center`}>
             {isEditing ? (
                 <input
                     type="text"
-                    value={editText}
-                    onChange={(e) => setEditText(e.target.value)}
+                    defaultValue={todo.text}
+                    ref={editInputRef}
                     className='bg-gray-200'
                 />
             ) : (
@@ -54,7 +47,7 @@ function TodoItem({ todo }: TodoItemProps) {
 
             <div>
                 {isEditing ? (
-                    <button onClick={saveEdit} className='text-red-600'>Save</button>
+                    <button onClick={handleSaveClick} className='text-red-600'>Save</button>
                 ) : (
                     <button className={`mx-1 text-blue-500 ${todo.completed ? 'line-through text-gray-500' : ''}`} onClick={() => setIsEditing(true)}>Edit</button>
                 )}
