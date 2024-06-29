@@ -454,6 +454,14 @@
   resolved "https://registry.yarnpkg.com/@mongez/events/-/events-2.1.0.tgz#644fa0c0ae226f162ccca4a755a059892d545253"
   integrity sha512-gUTDm8fy0BRJmG/kkSmLi/Ir2PAFQQtk0FE9GGivnIK5YpGJD6MFrIj3Ui8SN3mMFKvCJae6zJjuYv6fLFQgBQ==
 
+"@mongez/localization@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@mongez/localization/-/localization-2.2.4.tgz#6d3c4b924474c9d14d1d97fe3c10fff07769c19a"
+  integrity sha512-AVuIhuj2ibrRfsFAN0L2H3y9YDMqmPU07ee7Y/iCQiOIMCwwvxsE2x6t07z27MPFAtcexvt5rykZuQtmBBJ+tg==
+  dependencies:
+    "@mongez/events" "^2.1.0"
+    "@mongez/reinforcements" "^2.3.8"
+
 "@mongez/react-atom@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@mongez/react-atom/-/react-atom-5.0.0.tgz#13977bdab7ce2a865d3390c76cf3a87a4446b8e3"
@@ -461,7 +469,7 @@
   dependencies:
     "@mongez/atom" "^1.0.0"
 
-"@mongez/reinforcements@^2.3.10":
+"@mongez/reinforcements@^2.3.10", "@mongez/reinforcements@^2.3.8":
   version "2.3.10"
   resolved "https://registry.yarnpkg.com/@mongez/reinforcements/-/reinforcements-2.3.10.tgz#cf47b3196cf5283ea7d4228652df6ee2e2cb2296"
   integrity sha512-jGTDXo2AO+E0Xuy1iTmJHlz2W/dbxWBTuy/J1MRjKs140JNG3mDqM1Msv1a6aLCg7toHqiRusdI13JuMNqWtOw==

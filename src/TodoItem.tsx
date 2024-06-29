@@ -1,7 +1,7 @@
 import Todo from './Todo';
 import { useRef, useState } from 'react';
 import { todoAtom } from './atom/todo.atom';
-
+import { trans } from "@mongez/localization";
 
 interface TodoItemProps {
     todo: Todo;
@@ -47,12 +47,12 @@ function TodoItem({ todo }: TodoItemProps) {
 
             <div>
                 {isEditing ? (
-                    <button onClick={handleSaveClick} className='text-red-600'>Save</button>
+                    <button onClick={handleSaveClick} className='text-red-600'>{trans('SaveButtonText')}</button>
                 ) : (
-                    <button className={`mx-1 text-blue-500 ${todo.completed ? 'line-through text-gray-500' : ''}`} onClick={() => setIsEditing(true)}>Edit</button>
+                    <button className={`mx-1 text-blue-500 ${todo.completed ? 'line-through text-gray-500' : ''}`} onClick={() => setIsEditing(true)}>{trans('EditButtonText')}</button>
                 )}
-                <button onClick={() => handleCompleteClick(todo.id)} className={`mx-1 text-green-500 ${todo.completed ? 'line-through text-gray-500' : ''}`}>Complete</button>
-                <button onClick={() => handleRemoveClick(todo.id)} className="mx-1 text-red-800">Remove</button>
+                <button onClick={() => handleCompleteClick(todo.id)} className={`mx-1 text-green-500 ${todo.completed ? 'line-through text-gray-500' : ''}`}>{trans('CompleteButtonText')}</button>
+                <button onClick={() => handleRemoveClick(todo.id)} className="mx-1 text-red-800">{trans('DeleteButtonText')}</button>
             </div>
         </li>
     );
