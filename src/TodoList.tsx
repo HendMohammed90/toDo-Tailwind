@@ -1,6 +1,6 @@
 import TodoItem from './TodoItem';
 import { todoAtom } from './atom/todo.atom';
-import Add_todo_form from './Add_todo_form';
+import AddTodoForm from './AddTodoForm';
 import { useEffect } from 'react';
 import cache from '@mongez/cache';
 import Todo from './Todo';
@@ -19,7 +19,7 @@ const TodoList = () => {
 
     return (
         <>
-            <Add_todo_form />
+            <AddTodoForm />
             <ul className='my-24'>
                 {todos.map((todo: Todo) => (
                     <TodoItem

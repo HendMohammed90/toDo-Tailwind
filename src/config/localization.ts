@@ -10,7 +10,8 @@ const translations: TranslationsList = {
         EditButtonText: "Edit",
         DeleteButtonText: "Delete",
         CompleteButtonText: "Complete",
-        SaveButtonText:"save"
+        SaveButtonText:"save",
+        ButtonPlaceholder: "Write Your Todos"
     },
     ar: {
         headerTitle: " قائمة المهام",
@@ -18,7 +19,8 @@ const translations: TranslationsList = {
         EditButtonText: "تعديل",
         DeleteButtonText: "حذف",
         CompleteButtonText: "مكتمل",
-        SaveButtonText: "حفظ"
+        SaveButtonText: "حفظ",
+        ButtonPlaceholder : "اكتب مهمتك "
 
     },
 }
