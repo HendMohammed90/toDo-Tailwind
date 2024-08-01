@@ -427,6 +427,53 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@mongez/atom@^1.0.0":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@mongez/atom/-/atom-1.0.3.tgz#d32280dd05ad4de30ac5638678cb437fb0ffd82e"
+  integrity sha512-CEZqwmFq2g/vmEOwXA3JXX/JOJcXQMu/CqhZP9seBKRIi74AQ52VOzYdf7mbzt7YbVjvdDOk4Bt6K/fpvl8xNg==
+  dependencies:
+    "@mongez/events" "^2.1.0"
+    "@mongez/reinforcements" "^2.3.10"
+
+"@mongez/cache@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@mongez/cache/-/cache-1.2.4.tgz#b4201c94214d8cc8b561d7d3e73a620824fa9517"
+  integrity sha512-1m5lmoj7mODtUrxfLXtS8bQskCNtJp+fuvAkscP64nalCGBK7BMnNkSvWGy8BGIg+vAv1qKNpe/GJ7SEECutEQ==
+  dependencies:
+    "@mongez/encryption" "^1.0.x"
+
+"@mongez/encryption@^1.0.x":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@mongez/encryption/-/encryption-1.0.4.tgz#91b9c78ddadf29ce5be35fa8a52f9eecbf371008"
+  integrity sha512-g97rfpCUQEYVSPo0Y8WETHhmoK+6/vZ+1antlym2UQbBvIjXquaAlPB8bqnC+ry7JsCmUIpGatIp6m4S2Xa8Lg==
+  dependencies:
+    crypto-js "^4.0.0"
+
+"@mongez/events@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@mongez/events/-/events-2.1.0.tgz#644fa0c0ae226f162ccca4a755a059892d545253"
+  integrity sha512-gUTDm8fy0BRJmG/kkSmLi/Ir2PAFQQtk0FE9GGivnIK5YpGJD6MFrIj3Ui8SN3mMFKvCJae6zJjuYv6fLFQgBQ==
+
+"@mongez/localization@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@mongez/localization/-/localization-2.2.4.tgz#6d3c4b924474c9d14d1d97fe3c10fff07769c19a"
+  integrity sha512-AVuIhuj2ibrRfsFAN0L2H3y9YDMqmPU07ee7Y/iCQiOIMCwwvxsE2x6t07z27MPFAtcexvt5rykZuQtmBBJ+tg==
+  dependencies:
+    "@mongez/events" "^2.1.0"
+    "@mongez/reinforcements" "^2.3.8"
+
+"@mongez/react-atom@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@mongez/react-atom/-/react-atom-5.0.0.tgz#13977bdab7ce2a865d3390c76cf3a87a4446b8e3"
+  integrity sha512-X64mk3x5uw9J6ev7Jls2Q+aS9o0v4tPUc6Oc7LcPeucgj4Da1zCVnT+l4DEK+x6c0s6QVWjYFAe+RWj528UXeg==
+  dependencies:
+    "@mongez/atom" "^1.0.0"
+
+"@mongez/reinforcements@^2.3.10", "@mongez/reinforcements@^2.3.8":
+  version "2.3.10"
+  resolved "https://registry.yarnpkg.com/@mongez/reinforcements/-/reinforcements-2.3.10.tgz#cf47b3196cf5283ea7d4228652df6ee2e2cb2296"
+  integrity sha512-jGTDXo2AO+E0Xuy1iTmJHlz2W/dbxWBTuy/J1MRjKs140JNG3mDqM1Msv1a6aLCg7toHqiRusdI13JuMNqWtOw==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -1001,6 +1048,11 @@ cross-spawn@^7.0.0, cross-spawn@^7.0.2:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
+
+crypto-js@^4.0.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.2.0.tgz#4d931639ecdfd12ff80e8186dba6af2c2e856631"
+  integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
 
 cssesc@^3.0.0:
   version "3.0.0"
